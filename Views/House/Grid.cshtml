@@ -1,0 +1,17 @@
+﻿@model HouseRental.ViewModel.HouseListViewModel
+@{
+    ViewData["Title"] = "Grid Page";
+}
+
+<h1>List of House (@Model.CurrentViewName View)</h1>
+
+<a href="/House/Table"  class="btn btn-primary">Table View</a>
+
+
+<div class="row row-cols-1 row-cols-md-3 g-4" s>
+    @foreach (var house in Model.Houses)
+    {
+        <partial name="_HouseCard" model="house" />
+    }
+</div>
+

@@ -1,0 +1,12 @@
+﻿@model HouseRental.ViewModel.HouseListViewModel
+
+@{
+    ViewData["Title"] = "Table Page";
+}
+
+<h1>List of Houses (@Model.CurrentViewName View)</h1>
+<a href="/House/Grid" class="btn btn-primary">Grid View</a>
+
+<partial name="_HouseTable" model="@Model.Houses" />
+
+

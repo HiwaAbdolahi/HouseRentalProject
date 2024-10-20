@@ -1,0 +1,105 @@
+﻿@model LeaseAgreement
+
+<h2>Delete Lease Agreement</h2>
+
+<div>
+    <h4>Are you sure you want to delete this Lease Agreement?</h4>
+    <h4 class="text-danger">This action cannot be undone.</h4>
+</div>
+
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default property-details">
+            <div class="panel-heading">
+                <h3 class="panel-title">Lease Agreement Details</h3>
+            </div>
+            <div class="panel-body">
+                <dl class="dl-horizontal">
+                    <dt>@Html.DisplayNameFor(model => model.StartDate)</dt>
+                    <dd>@Html.DisplayFor(model => model.StartDate)</dd>
+
+                    <dt>@Html.DisplayNameFor(model => model.EndDate)</dt>
+                    <dd>@Html.DisplayFor(model => model.EndDate)</dd>
+
+                    <!-- Add other properties you want to display here -->
+                </dl>
+            </div>
+        </div>
+
+        <div class="panel panel-default renter-details">
+            <div class="panel-heading">
+                <h3 class="panel-title">Renter Details</h3>
+            </div>
+            <div class="panel-body">
+                @if (Model.Renter != null)
+                {
+                    <dl class="dl-horizontal">
+                        <dt>Renter ID</dt>
+                        <dd>@Model.Renter.RenterId</dd>
+
+                        <dt>Name</dt>
+                        <dd>@Model.Renter.Name</dd>
+
+                        <dt>Address</dt>
+                        <dd>@Model.Renter.Address</dd>
+
+                        <!-- Include other renter properties as needed -->
+                    </dl>
+                }
+                else
+                {
+                    <p>Renter Not Applicable</p>
+                }
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="panel panel-default house-details">
+            <div class="panel-heading">
+                <h3 class="panel-title">House Details</h3>
+            </div>
+            <div class="panel-body">
+                @if (Model.House != null)
+                {
+                    <dl class="dl-horizontal">
+                        <dt>House ID</dt>
+                        <dd>@Model.House.HouseId</dd>
+
+                        <dt>Address</dt>
+                        <dd>@Model.House.Address</dd>
+
+                        <dt>Rooms</dt>
+                        <dd>@Model.House.Rooms</dd>
+
+                        <dt>Price</dt>
+                        <dd>@Model.House.Price</dd>
+
+                        <dt>Owner Name</dt>
+                        <dd>@Model.House.Owner?.Name</dd>
+
+                        <!-- Include other house properties as needed -->
+                    </dl>
+
+                    @if (!string.IsNullOrEmpty(Model.House.ImageUrl))
+                    {
+                        <img src="@Model.House.ImageUrl" alt="House Image" class="house-image" style="max-width: 300px; max-height: 300px" />
+                    }
+                }
+                else
+                {
+                    <p>House Not Applicable</p>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<form asp-action="DeleteConfirmed" asp-route-id="@Model.LeaseAgreementId" method="post">
+    <button type="submit" class="btn btn-danger">Delete</button>
+    <a asp-action="Table" class="btn btn-secondary">Cancel</a>
+</form>
+
+
+

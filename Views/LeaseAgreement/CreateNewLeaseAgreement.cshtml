@@ -1,0 +1,39 @@
+﻿@model LeaseAgreement
+
+<h2>Create New Lease Agreement</h2>
+<div asp-validation-summary="All" class="text-danger"></div>  <!--Viser sammendrag av feilvalideringene og viser til brukeren her oppe -->
+
+<form asp-action="CreateNewLeaseAgreement">
+    <div class="form-group">
+        <label asp-for="StartDate"></label><span class="text-danger">*</span>
+        <input asp-for="StartDate" class="form-control" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndDate"></label><span class="text-danger">*</span>
+        <input asp-for="EndDate" class="form-control" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HouseId" class="control-label">House:</label>
+        <select asp-for="HouseId" asp-items="ViewBag.HouseList" class="form-control">
+            <option value="">-- Select a House --</option>
+        </select>
+        <span asp-validation-for="HouseId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RenterId" class="control-label">Renter:</label>
+        <select asp-for="RenterId" asp-items="ViewBag.RenterList" class="form-control">
+            <option value="">-- Select a Renter --</option>
+        </select>
+        <span asp-validation-for="RenterId" class="text-danger"></span>
+    </div>
+
+    <!-- Andre skjemafelt her -->
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Table" class="btn btn-secondary">Back to Table View</a>
+</form>

@@ -1,0 +1,152 @@
+﻿/* Styling for the Grid Page */
+h1 {
+    font-size: 36px;
+    color: #333;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    display: inline-block;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+}
+
+/* Styling for the Grid Container */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+/* Styling for the House Cards */
+.col {
+    width: calc(30% - 20px); /* Adjust width as needed */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+.col:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: #f8f9fa;
+}
+
+.text-start {
+    margin: 0;
+    font-size: 20px;
+}
+
+.text-nowrap {
+    margin: 0;
+    font-size: 20px;
+    color: #ac7878; /* Adjust color as needed */
+}
+
+
+
+/* Grid.cshtml.css */
+
+/* Styling for the Grid Page */
+h1 {
+    font-size: 30px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+a {
+    text-decoration: none;
+    color: #007bff;
+    margin-bottom: 20px;
+    display: block;
+}
+
+/* Styling for the Grid Container */
+.row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+/* Styling for the House Cards */
+.col {
+    width: 30%; /* Adjust width as needed */
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .col:hover {
+        transform: scale(1.3);
+    }
+
+.card-img-top {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    object-position: center;
+}
+
+.d-flex {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+.text-start {
+    margin-bottom: 0;
+    font-size: 18px;
+}
+
+.text-nowrap {
+    margin-bottom: 0;
+    font-size: 18px;
+    color: #ac7878; /* Adjust color as needed */
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

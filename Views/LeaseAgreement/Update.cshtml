@@ -1,0 +1,41 @@
+﻿@model LeaseAgreement
+
+<h2>Update Lease Agreement</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
+
+<form asp-action="Update">
+    <input type="hidden" asp-for="HouseId" />   <!-- både HouseId og Owner Id må være hidden-->
+    <input type="hidden" asp-for="RenterId" />
+    <div class="form-group">
+        <label asp-for="StartDate">Start Date</label><span class="text-danger">*</span>
+        <input asp-for="StartDate" class="form-control" />
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="EndDate">End Date</label><span class="text-danger">*</span>
+        <input asp-for="EndDate" class="form-control" />
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="HouseId" class="control-label">House</label>
+        <select asp-for="HouseId" asp-items="ViewBag.HouseList" class="form-control">
+            <option value="">-- Select a House --</option>
+        </select>
+        <span asp-validation-for="HouseId" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="RenterId" class="control-label">Renter</label>
+        <select asp-for="RenterId" asp-items="ViewBag.RenterList" class="form-control">
+            <option value="">-- Select a Renter --</option>
+        </select>
+        <span asp-validation-for="RenterId" class="text-danger"></span>
+    </div>
+
+    <!-- Andre skjemafelt her -->
+
+    <button type="submit" class="btn btn-primary">Save Changes</button>
+    <a asp-action="Table" class="btn btn-secondary">Back to Table View</a>
+</form>

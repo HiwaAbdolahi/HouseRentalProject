@@ -1,0 +1,21 @@
+﻿@model Owner
+
+<h2>Create New Customer</h2>
+<div asp-validation-summary="All" class="text-danger"></div>  <!--Viser sammendrag av feilvalideringene og viser til brukeren her oppe -->
+
+<form asp-action="CreateNewOwner">
+    <div class="form-group">
+        <label asp-for="Name"></label><span class="text-danger">*</span>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Address"></label><span class="text-danger">*</span>
+        <input asp-for="Address" class="form-control" />
+        <span asp-validation-for="Address" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Create</button>
+    <a asp-action="Table" class="btn btn-secondary">Back to Table View</a>
+</form>

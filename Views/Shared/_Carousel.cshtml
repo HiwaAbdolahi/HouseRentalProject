@@ -1,0 +1,84 @@
+﻿<!-- Legg til Swiper CSS-stiler -->
+<link rel="stylesheet"
+      href="~/lib/swiper/swiper-bundle.min.css" />
+<link rel="stylesheet" href="~/css/Swiper.css" />
+
+<!-- Legg til Swiper JS -->
+<script src="~/lib/swiper/swiper-bundle.min.js"></script>
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const swiper = new Swiper('.swiper-container', {
+
+            // Tid (i millisekunder) for swiper-transisjonen
+            speed: 1000, // Endre verdien til ønsket hastighet
+            // Resten av konfigurasjonen
+
+
+            effect: 'cube',
+            grabCursor: true,
+            cubeEffect: {
+                shadow: true,
+                slideShadows: true,
+                shadowOffset: 20,
+                shadowScale: 0.94,
+            },
+            pagination: {
+                el: '.swiper-pagination',
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+
+            autoplay: {
+                delay: 3000, // Tidsintervall mellom hvert bilde i millisekunder
+                disableOnInteraction: true, // Slå av automatisk avspilling ved brukerinteraksjon (valgfritt)
+            },
+        });
+
+
+
+
+
+
+    });
+</script>
+
+
+
+
+
+
+
+
+<div class="swiper-container">
+    <div class="swiper-wrapper">
+                                     <!-- Your slides here -->
+        <div class="swiper-slide">
+            <img src="~/images/1.jpg" class="d-block w-75 mx-auto" alt="Pizza">
+        </div>
+        <div class="swiper-slide">
+            <img src="~/images/6.jpg" class="d-block w-75 mx-auto" alt="Fried Chicken Leg">
+        </div>
+        <div class="swiper-slide">
+            <img src="~/images/3.jpg" class="d-block w-75 mx-auto" alt="Tacos">
+        </div>
+    </div>
+    <div class="swiper-pagination"></div>
+
+    <!-- Navigation arrows -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+</div>
+
+
+
+
+
+
+
+
+

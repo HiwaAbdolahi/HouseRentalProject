@@ -1,0 +1,61 @@
+﻿@model IEnumerable<HouseRental.Models.LeaseAgreement>
+
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th>Lease Agreement ID</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>House</th>
+            <th>Renter</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var leaseAgreement in Model)
+        {
+            <tr>
+                <td>@leaseAgreement.LeaseAgreementId</td>
+                <td>@leaseAgreement.StartDate.ToString("yyyy-MM-dd")</td>
+                <td>@leaseAgreement.EndDate.ToString("yyyy-MM-dd")</td>
+                
+                <td>
+                    @if (leaseAgreement.House != null)
+                    {
+                        <p>House ID: @leaseAgreement.House.HouseId</p>
+                        <p>House Address: @leaseAgreement.House.Address</p>   <!--Jeg må lage en linke for details View About house her-->
+                        <p>House Rooms: @leaseAgreement.House.Rooms</p>
+                        <p>House Price: @leaseAgreement.House.Price.ToString("0.00 NOK")</p>
+                        <p>House Owner Name: @leaseAgreement.House.Owner?.Name</p>
+                        <!-- Include other house properties as needed -->
+                    }
+                    else
+                    {
+                        <text>House Not Applicable</text>
+                    }
+                </td>
+                <td>
+                    @if (leaseAgreement.Renter != null)
+                    {
+                        <p>Renter ID: @leaseAgreement.Renter.RenterId</p>
+                        <p>Renter Name: @leaseAgreement.Renter.Name</p>
+                        <p>Renter Address: @leaseAgreement.Renter.Address</p>
+                        <!-- Include other renter properties as needed -->
+                    }
+                    else
+                    {
+                        <text>Renter Not Applicable</text>
+                    }
+                </td>
+                <td>
+                    <a asp-action="Update" asp-route-id="@leaseAgreement.LeaseAgreementId" class="btn btn-sm btn-primary">Update</a>
+                    <a asp-action="Delete" asp-route-id="@leaseAgreement.LeaseAgreementId" class="btn btn-sm btn-danger">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p>
+    <a class="btn btn-secondary" asp-controller="LeaseAgreement" asp-action="CreateNewLeaseAgreement">Create New Lease Agreement</a>
+</p>
