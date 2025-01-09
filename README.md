@@ -1,3 +1,7 @@
+## Live Demo
+[Visit the site](https://houserental.azurewebsites.net)
+
+
 # House Rental Project
 
 ## Prosjektoversikt
