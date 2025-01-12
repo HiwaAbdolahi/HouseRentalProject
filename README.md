@@ -103,7 +103,8 @@ jobs:
         with:  
           app-name: 'HouseRental'  
           slot-name: 'Production'  
-          package: .  
+          package: 
+```
 
 
 ## Brukerhistorier
