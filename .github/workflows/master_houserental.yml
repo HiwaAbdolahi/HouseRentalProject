@@ -62,10 +62,4 @@ jobs:
           app-name: 'HouseRental'
           slot-name: 'Production'
           package: .
-
-      # Apply EF Core Migrations after deployment
-      - name: Apply EF Core Migrations
-        run: |
-          cd ${{env.DOTNET_ROOT}}/myapp
-          dotnet ef database update --no-build
           
