@@ -5,6 +5,19 @@ using Serilog;
 using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
+//addet dette -----------------------------------------------------\
+
+
+// Add this to configure app settings based on the environment
+builder.Configuration
+    .SetBasePath(Directory.GetCurrentDirectory())
+    .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+    .AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true)
+    .AddEnvironmentVariables();
+//-------------------------oppe-----------------------/////////////////////////
+
+
+
 var connectionString = builder.Configuration.GetConnectionString("HouseDbContextConnection") ?? 
     throw new InvalidOperationException("Connection string 'HouseDbContextConnection' not found.");
 
