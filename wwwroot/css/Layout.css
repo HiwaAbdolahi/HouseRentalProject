@@ -284,7 +284,7 @@ body {
     /* Når menyen er åpen */
     .navbar-collapse.show {
         display: flex;
-        max-height: 300px;
+        max-height: 500px;
         animation: slideIn 0.3s ease-in-out;
     }
 
@@ -303,16 +303,20 @@ body {
 }
 
 
+/* Sørger for at login og register alltid er synlige i mørk modus */
 .dark-mode .navbar-nav .nav-link {
-    color: white !important; /* Sikrer at linken er synlig i mørk modus */
-}
-
-.dark-mode .navbar-nav .btn-link {
     color: white !important;
 }
 
-/* Hover-effekt */
-.dark-mode .navbar-nav .nav-link:hover {
-    color: #007bff !important;
-}
 
+
+
+
+
+
+
+
+
+
+
+/* -------------------------------------------------------------------------------Responisv starter -----------------------------------------------------------------------------*/
