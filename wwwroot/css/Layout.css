@@ -1,4 +1,32 @@
-﻿/* 🌙 Generell mørk/lys modus */
+﻿
+
+
+
+/* 🚀 Sikrer at hovedinnholdet tar opp resten av plassen */
+.container {
+    flex-grow: 1; /* Sørger for at innholdet tar all tilgjengelig plass */
+}
+
+
+/* 📌 Fikset navbar-bredde */
+.navbar {
+    width: 100%; /* Sikrer at navbaren alltid dekker hele bredden */
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+/* 🌟 Justerer body for å unngå navbar-overlapping */
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Sikrer at body alltid fyller skjermen */
+    padding-top: 80px; /* Justerer for høyden til navbaren */
+}
+
+
+/* 🌙 Generell mørk/lys modus */
 body {
     font-family: 'Poppins', sans-serif;
     background: linear-gradient(135deg, #eef2f3, #d3d8e8);
@@ -238,6 +266,23 @@ body {
     }
 
 /* 📱 Responsiv meny */
+/*---------------------------------------------------------------------------------------------------ned-----------------------------------------------------------*/
+/* 🎨 Større, renere hamburger-ikon */
+.navbar-toggler {
+    border: none;
+    padding: 8px 12px;
+    transition: transform 0.3s ease-in-out;
+}
+
+    .navbar-toggler:hover {
+        transform: scale(1.1);
+    }
+
+/* 🎭 Gjør hamburgerikonet synlig i mørk modus */
+.dark-mode .navbar-toggler-icon {
+    filter: invert(1); /* Gjør den hvit */
+}
+/*--------------------------------------------------------------------------------------------------------------opp--------------------------------------------*/
 .navbar-toggler {
     display: block;
     background: transparent;
@@ -247,6 +292,21 @@ body {
     color: #000;
     padding: 5px 10px;
 }
+.navbar-toggler-icon {
+    display: inline-block;
+    width: 1.5em;
+    height: 1.5em;
+    background-color: transparent;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(0, 0, 0, 0.8)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+.dark-mode .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=UTF8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba(255, 255, 255, 0.9)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+}
+
+
 
 /* 🎭 Mørk modus for toggler */
 .dark-mode .navbar-toggler {
@@ -266,10 +326,12 @@ body {
         left: 0;
         box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
         padding: 10px 0;
-        transition: max-height 0.3s ease-in-out;
         max-height: 0;
         overflow: hidden;
     }
+
+   
+
 
     .dark-mode .navbar-collapse {
         background: rgba(20, 20, 20, 0.95);
@@ -302,21 +364,17 @@ body {
     }
 }
 
+/*--------------------------------------------------------------------ned------------------------------------------------------*/
+/* 🌀 Glatt overgang for å åpne/lukke menyen */
+.navbar-collapse {
+    transition: max-height 0.4s ease-in-out;
+}
+/*--------------------------------------------------------------------opp-------------------------------------------------------*/
+
 
 /* Sørger for at login og register alltid er synlige i mørk modus */
 .dark-mode .navbar-nav .nav-link {
     color: white !important;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 /* -------------------------------------------------------------------------------Responisv starter -----------------------------------------------------------------------------*/
