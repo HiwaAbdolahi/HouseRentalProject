@@ -377,4 +377,54 @@ body {
     color: white !important;
 }
 
-/* -------------------------------------------------------------------------------Responisv starter -----------------------------------------------------------------------------*/
+
+
+
+
+/*---------------------------------------------------------------------------Dark mode : ned------------------------------------------------*/
+
+/* 🎭 Dark Mode Styles for Table */
+.dark-mode .table th {
+    background-color: #6c757d; /* Grå header */
+    color: white;
+}
+
+.dark-mode .table tr:nth-child(even) {
+    background-color: #2b2b2b; /* Mørkegrå for annenhver rad */
+}
+
+.dark-mode .table tr:nth-child(odd) {
+    background-color: #1e1e1e; /* Svartgrå for oddetall-rader */
+}
+
+.dark-mode .table tr:hover {
+    background-color: #444; /* Lysere grå når du hover over */
+}
+
+.dark-mode .table td {
+    color: white !important; /* Sørger for at teksten alltid er hvit */
+}
+
+/* 🔘 Knappestiler i dark mode */
+.dark-mode .btn-dark {
+    background-color: #555; /* Mellomgrå */
+}
+
+    .dark-mode .btn-dark:hover {
+        background-color: #666;
+    }
+
+.dark-mode .btn-danger {
+    background-color: #b30000; /* Rød */
+}
+
+    .dark-mode .btn-danger:hover {
+        background-color: #cc0000;
+    }
+
+.dark-mode h1 {
+    color: #f8f9fa; /* Lys grå, bedre for lesbarhet */
+}
+
+
+/*--------------------------------------------------------------------------------------opp---------------------------------------------------------------------------------------*/
