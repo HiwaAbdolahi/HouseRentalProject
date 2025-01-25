@@ -235,35 +235,203 @@ body {
     position: relative;
 }
 
-/* 🎭 Mørk modus for lenker */
+
+
+
+
+
+
+
+
+/* 🎭 Mørk modus for lenke HOUSE RENTAL (Home siden) */
 .dark-mode .navbar a {
-    color: #fff;
+    color: #00ffea; /* Neon-effekt */
 }
 
-/* 🌟 Understrek-effekt ved hover */
-.navbar a::after {
-    content: "";
-    display: block;
-    width: 0%;
-    height: 3px;
-    background: #007bff;
-    transition: width 0.3s ease-in-out;
-    position: absolute;
-    bottom: -5px;
-    left: 50%;
-    transform: translateX(-50%);
+/* ✨ Profesjonell Glassmorphism-navbar */
+.navbar {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.2));
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+    transition: all 0.5s ease-in-out;
+    animation: fadeInNavbar 0.8s ease-out;
 }
 
-/* 🚀 Hover-effekt for meny-lenker */
-.navbar a:hover {
-    color: #007bff;
-    transform: translateY(-2px);
+/* 🎭 Mørk modus - Forbedret Glassmorphism */
+.dark-mode .navbar {
+    background: linear-gradient(135deg, rgba(0, 0, 0, 0.2), rgba(50, 50, 50, 0.5));
+    backdrop-filter: blur(20px);
+    box-shadow: 0 0 25px rgba(0, 191, 255, 0.7);
 }
 
-    /* 🌟 Understrek blir synlig ved hover */
-    .navbar a:hover::after {
+/* 🔥 Pulserende neon-glød rundt navbaren */
+@keyframes pulseGlow {
+    0% {
+        box-shadow: 0 0 15px rgba(0, 123, 255, 0.5);
+    }
+
+    100% {
+        box-shadow: 0 0 25px rgba(0, 123, 255, 0.9);
+    }
+}
+
+/* 🎭 Mørk modus - Standard farge for lenker */
+.dark-mode .navbar .nav-link {
+    color: #00ffea !important;
+}
+
+/* 🚀 Forbedret Effekt for Aktiv Lenke i NORMAL MODE */
+.navbar .nav-link.active {
+    font-weight: bold;
+    color: #0047ab !important; /* Dyp blå for en mer moderne look */
+    position: relative;
+    transform: scale(1.05);
+    text-shadow: 0px 0px 12px rgba(0, 71, 171, 0.6); /* Myk blå glød */
+    animation: glowPulse 1.5s infinite alternate;
+}
+
+    /* 🌟 Ny animert Understrek-effekt for Aktiv Lenke */
+    .navbar .nav-link.active::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -6px;
+        width: 100%;
+        height: 3px;
+        background: linear-gradient(90deg, #0047ab, #008cff);
+        border-radius: 3px;
+        transform: translateX(-50%);
+        transition: width 0.4s ease-in-out, opacity 0.4s ease-in-out;
+        animation: underlineSlide 0.5s ease-in-out;
+    }
+
+/* 🖱️ Animerte hover-effekter */
+.navbar .nav-link:hover {
+    color: #0047ab;
+    transform: translateY(-2px) scale(1.08);
+    box-shadow: 0 6px 15px rgba(0, 71, 171, 0.4);
+}
+
+    /* 🌊 Lysglimt-effekt ved hover */
+    .navbar .nav-link:hover::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        bottom: -6px;
+        left: 0;
+        background: linear-gradient(90deg, rgba(255, 255, 255, 0.6), rgba(0, 71, 171, 0.9));
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.4s ease-in-out;
+    }
+
+    .navbar .nav-link:hover::before {
+        transform: scaleX(1);
+    }
+
+/* 🎭 Mørk modus - Aktiv Lenke */
+.dark-mode .navbar .nav-link.active {
+    color: #00ffea !important;
+}
+
+    .dark-mode .navbar .nav-link.active::after,
+    .dark-mode .navbar .nav-link:hover::after {
+        background: linear-gradient(90deg, #00ffea, #ffea00);
+    }
+
+/* ✨ Ekstra glød-effekt i mørk modus */
+.dark-mode .navbar .nav-link:hover {
+    text-shadow: 0px 0px 20px rgba(0, 191, 255, 0.9);
+}
+
+/* 🌟 Pulserende glow-effekt for aktiv lenke */
+@keyframes glowPulse {
+    0% {
+        text-shadow: 0px 0px 10px rgba(0, 71, 171, 0.5);
+    }
+
+    100% {
+        text-shadow: 0px 0px 18px rgba(0, 71, 171, 0.8);
+    }
+}
+
+/* 🔄 Understrek slide-in animasjon */
+@keyframes underlineSlide {
+    0% {
+        width: 0;
+    }
+
+    100% {
         width: 100%;
     }
+}
+
+/* 📱 Responsivt Design for Kompakt Navbar på Mobile Enheter */
+@media (max-width: 768px) {
+    .navbar {
+        padding: 8px 10px;
+        box-shadow: 0 0 10px rgba(0, 123, 255, 0.6);
+    }
+
+        .navbar .navbar-brand {
+            font-size: 1.2rem;
+        }
+
+        .navbar .navbar-nav {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .navbar .nav-link {
+            font-size: 14px;
+            padding: 6px 10px;
+        }
+
+    .navbar-toggler {
+        border: none;
+        font-size: 20px;
+        color: #fff;
+        transition: transform 0.3s ease-in-out;
+    }
+
+        .navbar-toggler:hover {
+            transform: scale(1.1);
+        }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 /* 📱 Responsiv meny */
 /*---------------------------------------------------------------------------------------------------ned-----------------------------------------------------------*/
@@ -350,18 +518,7 @@ body {
         animation: slideIn 0.3s ease-in-out;
     }
 
-    /* ✨ Glide-inn animasjon */
-    @keyframes slideIn {
-        from {
-            transform: translateY(-20px);
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
-    }
+    
 }
 
 /*--------------------------------------------------------------------ned------------------------------------------------------*/

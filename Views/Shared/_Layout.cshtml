@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using HouseRental.Helpers
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -18,6 +20,8 @@
     <script src="~/lib/jquery/jquery.js"></script>
     <script src="~/lib/jquery-validate/jquery.validate.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+    <script src="~/JS/navbar.js"></script>
+
 </head>
 
 <body class="background">
@@ -46,21 +50,22 @@
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link @Html.IsActive("Home")" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="House" asp-action="Table">House</a>
+                            <a class="nav-link @Html.IsActive("House")" asp-area="" asp-controller="House" asp-action="Table">House</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Owner" asp-action="Table">Owner</a>
+                            <a class="nav-link @Html.IsActive("Owner")" asp-area="" asp-controller="Owner" asp-action="Table">Owner</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="Renter" asp-action="Table">Renter</a>
+                            <a class="nav-link @Html.IsActive("Renter")" asp-area="" asp-controller="Renter" asp-action="Table">Renter</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" asp-area="" asp-controller="LeaseAgreement" asp-action="Table">LeaseAgreement</a>
+                            <a class="nav-link @Html.IsActive("LeaseAgreement")" asp-area="" asp-controller="LeaseAgreement" asp-action="Table">LeaseAgreement</a>
                         </li>
                     </ul>
+
 
                     <!-- 🔑 Login-knapp -->
                     <partial name="_LoginPartial" />
