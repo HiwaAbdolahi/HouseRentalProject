@@ -4,9 +4,13 @@
     ViewData["Title"] = "Table Page";
 }
 
-<h1>List of Houses (@Model.CurrentViewName View)</h1>
-<a href="/House/Grid" class="btn btn-primary">Grid View</a>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>List of Houses (@Model.CurrentViewName View)</h1>
+
+    <!-- 🚀 ULTRA-UNIK GRID VIEW-KNAPP -->
+    <a href="/House/Grid" class="btn-grid-view">
+        <i class="bi bi-grid-3x3-gap-fill"></i> Grid View
+    </a>
+</div>
 
 <partial name="_HouseTable" model="@Model.Houses" />
-
-

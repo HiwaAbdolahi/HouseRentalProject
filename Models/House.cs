@@ -25,7 +25,8 @@ namespace HouseRental.Models
 
         [Required(ErrorMessage = "Availability is required")]
         [Display(Name = "Is Available")]
-        public string IsAvailable { get; set; } = string.Empty;
+        public bool IsAvailable { get; set; } = true;
+
 
 
         public int OwnerId { get; set; }
