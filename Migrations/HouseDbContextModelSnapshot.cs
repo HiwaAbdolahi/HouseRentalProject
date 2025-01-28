@@ -36,9 +36,8 @@ namespace HouseRental.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("IsAvailable")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("INTEGER");

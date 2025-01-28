@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HouseRental.Migrations
 {
     [DbContext(typeof(HouseDbContext))]
-    [Migration("20250112123359_SyncDatabase")]
-    partial class SyncDatabase
+    [Migration("20250128180103_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -39,9 +39,8 @@ namespace HouseRental.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("IsAvailable")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<bool>("IsAvailable")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("OwnerId")
                         .HasColumnType("INTEGER");

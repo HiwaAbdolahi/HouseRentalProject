@@ -1,52 +1,67 @@
-﻿
-@model IEnumerable<House>
+﻿@model IEnumerable<House>
 
-<div class="container">
-    <table class='table table-striped'>
-        <tr>
-            <th>Id</th>
-            
-            <th>Address</th>
-            <th>Price</th>
-            <th>Rooms</th>
-            <th>Image</th>
-            <th>Owner Name</th>
-            <th>Actions</th>
-            <th>IsAvalible</th>
-        </tr>
-        @foreach (var house in Model)
-        {
-            <tr>
-                <td>@house.HouseId</td>
-                <td>
-                    <a asp-controller="House"
-                       asp-action="Details"
-                       asp-route-id="@house.HouseId">@house.Address</a>
-                </td>
-                <td>@house.Price.ToString("0.00 NOK")</td>
-                <td>@house.Rooms</td>
-                <td>
-                    <img src="@house.ImageUrl" alt="Item Image" style="max-width: 80px; max-height: 80px" />
-                </td>
-                <td>
-                    @if (house.Owner != null) 
-                    {
-                        @house.Owner.Name
-                    }
-                </td>
-                <td>
-                    <a asp-action="Update" asp-route-id="@house.HouseId" class="btn btn-dark">Update</a>
-                    <a asp-action="Delete" asp-route-id="@house.HouseId" class="btn btn-danger">Delete</a>
-                </td>
-                <td>@house.IsAvailable</td>
-            </tr>
-        }
-    </table>
-    
-    <p>
-        <a class="btn btn-secondary"
-            asp-controller="House"
-            asp-action="Create"> 
-            Create New House</a>
-    </p> 
+<div class="container mt-5">
+    <div class="table-responsive shadow-lg p-4 bg-white rounded">
+        <table class="table table-hover align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Rooms</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Owner Name</th>
+                    <th scope="col">Actions</th>
+                    <th scope="col">Availability</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var house in Model)
+                {
+                    <tr>
+                        <td>@house.HouseId</td>
+                        <td>
+                            <a asp-controller="House"
+                               asp-action="Details"
+                               asp-route-id="@house.HouseId"
+                               class="text-decoration-none fw-bold text-primary">
+                                @house.Address
+                            </a>
+                        </td>
+                        <td>@house.Price.ToString("0.00 NOK")</td>
+                        <td>@house.Rooms</td>
+                        <td>
+                            <img src="@house.ImageUrl" class="table-img img-fluid rounded shadow-sm" alt="House Image">
+                        </td>
+                        <td>
+                            @if (house.Owner != null)
+                            {
+                                @house.Owner.Name
+                            }
+                        </td>
+                        <td>
+                            <a asp-action="Update" asp-route-id="@house.HouseId" class="btn btn-md btn-outline-primary">
+                                <i class="bi bi-pencil-square"></i> Update
+                            </a>
+                            <a asp-action="Delete" asp-route-id="@house.HouseId" class="btn btn-md btn-outline-danger">
+                                <i class="bi bi-trash"></i> Delete
+                            </a>
+
+                        </td>
+                        <td>
+                            <span class="badge bg-@(house.IsAvailable ? "success" : "danger")">
+                                @(house.IsAvailable ? "Available" : "Not Available")
+                            </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center mt-4">
+        <a class="btn btn-lg btn-outline-secondary" asp-controller="House" asp-action="Create">
+            <i class="bi bi-plus-circle"></i> Create New House
+        </a>
+    </div>
 </div>
