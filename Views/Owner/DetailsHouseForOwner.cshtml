@@ -9,7 +9,7 @@
 </h3>
 
 <div class="row gx-5">
-    <img alt="@Model.Address" src="@Model.ImageUrl" class="img-fluid col-5" />
+    <img alt="@Model.Address" src="@Model.Images.FirstOrDefault()?.ImageUrl" class="img-fluid col-5" />
     <div class="col-7">
         <h5> Rooms : @Model.Rooms</h5>
         <h3 class="pull-right">Price : @Model.Price.ToString("0.00 NOK")</h3>

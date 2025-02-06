@@ -14,12 +14,13 @@ namespace HouseRental.Models
         [RegularExpression(@"[0-9a-zA-ZæøåÆØÅ., \-]{2,100}", ErrorMessage = "The address must be alphanumeric characters and may include ., - and spaces, between 2 and 100 characters.")]
         [Display(Name = "Renter's Address")]
         public string Address { get; set; } = string.Empty;
+
         public int HouseId { get; set; }
 
+        // 🔥 Oppdatert House-relasjon til å inkludere bilder
+        public virtual House? House { get; set; }
 
-        public virtual House? House { get; set; } // Fremmednøkkel for forhold til Hus
-        public virtual List<LeaseAgreement>? LeaseAgreements { get; set; } // En-til-mange-forhold til Leieavtaler (kan ha flere leie avtaler)
-
+        public virtual List<LeaseAgreement>? LeaseAgreements { get; set; }
     }
 }
 

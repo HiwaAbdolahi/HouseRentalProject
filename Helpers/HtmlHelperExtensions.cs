@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace HouseRental.Helpers // Pass på at namespace stemmer overens med prosjektet ditt!
+namespace HouseRental.Helpers 
 {
     public static class HtmlHelperExtensions
     {

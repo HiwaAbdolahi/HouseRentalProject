@@ -1,4 +1,4 @@
-﻿@model House
+﻿@model HouseRental.ViewModel.HouseUploadViewModel
 
 <h2>Create New House</h2>
 
@@ -8,7 +8,7 @@
 
 <!--Owner Id må være samme som den som vi har i databasen ellers du kan ikke lage noe-->
 <!--Etter på kan jeg oppdatere om de skriver navn eller velger mellom den som vi har fra db-->
-<form asp-action="Create">
+<form asp-action="Create" enctype="multipart/form-data">
     <div class="form-group">
         <label asp-for="OwnerId" class="control-label">Owner:</label>
         <select asp-for="OwnerId" asp-items="ViewBag.OwnerList" class="form-control">
@@ -30,15 +30,17 @@
     </div>
 
     <div class="form-group">
-        <label asp-for="Rooms"></label><span class="text-danger"></span>
+        <label asp-for="Rooms"></label><span class="text-danger">*</span>
         <input asp-for="Rooms" class="form-control" />
         <span asp-validation-for="Rooms" class="text-danger"></span>
     </div>
 
+    <!-- 🖼️ Filopplastingsfelt for flere bilder -->
     <div class="form-group">
-        <label asp-for="ImageUrl"></label><span class="text-danger"></span>
-        <input asp-for="ImageUrl" class="form-control" />
-        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        <label for="houseImages">Upload Images</label>
+        <input asp-for="Images" class="form-control" type="file" multiple />
+        <span asp-validation-for="Images" class="text-danger"></span>
+
     </div>
 
     <div class="form-group">
@@ -53,9 +55,6 @@
         </div>
         <span asp-validation-for="IsAvailable" class="text-danger"></span>
     </div>
-
-
-
 
     <button type="submit" class="btn btn-primary">Create</button>
     <a asp-action="Table" class="btn btn-secondary">Back to Table View</a>

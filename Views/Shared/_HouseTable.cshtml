@@ -31,7 +31,15 @@
                         <td>@house.Price.ToString("0.00 NOK")</td>
                         <td>@house.Rooms</td>
                         <td>
-                            <img src="@house.ImageUrl" class="table-img img-fluid rounded shadow-sm" alt="House Image">
+                            @if (house.Images != null && house.Images.Any())
+                            {
+                                <img src="@house.Images.LastOrDefault()?.ImageUrl" class="table-img img-fluid rounded shadow-sm" alt="House Image">
+
+                            }
+                            else
+                            {
+                                <span>No Image Available</span>
+                            }
                         </td>
                         <td>
                             @if (house.Owner != null)

@@ -7,13 +7,11 @@ namespace HouseRental.Models
     {
         public int HouseId { get; set; }
 
-
         [Required(ErrorMessage = "Address is required")]
         [StringLength(100, ErrorMessage = "Address is too long")]
         [Display(Name = "House Address")]
         public string Address { get; set; } = string.Empty;
 
-        
         [Required(ErrorMessage = "Rooms is required")]
         [Range(1, 10, ErrorMessage = "Rooms must be between 1 and 10")]
         public int Rooms { get; set; }
@@ -27,16 +25,13 @@ namespace HouseRental.Models
         [Display(Name = "Is Available")]
         public bool IsAvailable { get; set; } = true;
 
-
-
         public int OwnerId { get; set; }
-
-        [Required]
-        public string? ImageUrl { get; set; }
 
         public virtual Owner? Owner { get; set; } // Fremmednøkkel for forhold til Eier
         public virtual List<LeaseAgreement>? LeaseAgreements { get; set; } // En-til-mange-forhold til Leieavtaler
+
+        // 🔥 Ny en-til-mange relasjon: Et hus kan ha flere bilder
+        public virtual List<HouseImage> Images { get; set; } = new List<HouseImage>();
+
     }
 }
-
-
