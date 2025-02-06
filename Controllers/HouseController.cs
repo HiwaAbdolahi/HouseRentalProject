@@ -21,6 +21,15 @@ namespace HouseRental.Controllers
         }
 
 
+
+
+
+
+        
+
+
+
+
         [Authorize]
         public async Task<IActionResult> Table()
         {
@@ -79,24 +88,76 @@ namespace HouseRental.Controllers
         public IActionResult Create()
         {
             // Hent en liste over eiere fra databasen og lagre den i ViewBag
-            ViewBag.OwnerList = new SelectList(_houseDbContext.Owners, "OwnerId", "Name"); 
+            ViewBag.OwnerList = new SelectList(_houseDbContext.Owners, "OwnerId", "Name");
 
-            return View();
+            return View(new HouseUploadViewModel());
         }
-        
+
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Create(House house) 
+        public async Task<IActionResult> Create(HouseUploadViewModel model)
         {
             if (ModelState.IsValid)
             {
-                bool ReturnOk = await _houseRepository.Create(house);
-                if (ReturnOk)
-                return RedirectToAction(nameof(Table));
+                // Map ViewModel til House-modellen
+                var house = new House
+                {
+                    Address = model.Address,
+                    Price = model.Price,
+                    Rooms = model.Rooms,
+                    IsAvailable = model.IsAvailable,
+                    OwnerId = 1 // Sett OwnerId dynamisk hvis nødvendig
+                };
+
+                bool houseCreated = await _houseRepository.Create(house);
+                if (houseCreated)
+                {
+                    var imageUrls = new List<string>();
+
+                    if (model.Images != null && model.Images.Any())
+                    {
+                        foreach (var image in model.Images)
+                        {
+                            var filePath = Path.Combine("wwwroot/images", image.FileName);
+                            using (var stream = new FileStream(filePath, FileMode.Create))
+                            {
+                                await image.CopyToAsync(stream);
+                            }
+                            imageUrls.Add("/images/" + image.FileName);
+                        }
+                    }
+
+                    if (imageUrls.Any())
+                    {
+                        await _houseRepository.AddHouseImages(house.HouseId, imageUrls);
+                    }
+
+                    return RedirectToAction(nameof(Table));
+                }
             }
-            _logger.LogError("[HouseController] House creation failed {@house}", house);
-            return View(house);
+
+            _logger.LogError("[HouseController] House creation failed {@model}", model);
+            return View(model);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -105,27 +166,104 @@ namespace HouseRental.Controllers
         public async Task<IActionResult> Update(int id)
         {
             var house = await _houseRepository.GetHouseById(id);
-            if(house == null)
+            if (house == null)
             {
                 _logger.LogError("[HouseController] House not found while updating HouseId {HouseId:0000}", id);
                 return NotFound("House not found for the HouseId");
             }
-            return View(house);
+
+            // Mapper husdata til ViewModel
+            var viewModel = new HouseUploadViewModel
+            {
+                HouseId = house.HouseId,
+                Address = house.Address,
+                Price = house.Price,
+                Rooms = house.Rooms,
+                IsAvailable = house.IsAvailable,
+                ExistingImages = house.Images
+            };
+
+            return View(viewModel);
         }
+
 
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Update(House house) 
+        public async Task<IActionResult> Update(HouseUploadViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                bool returnOk = await _houseRepository.Update(house);
-                if(returnOk)
+                // Hent eksisterende hus fra databasen
+                var house = await _houseRepository.GetHouseById(viewModel.HouseId);
+                if (house == null)
+                {
+                    _logger.LogError("[HouseController] House not found for update with HouseId {HouseId:0000}", viewModel.HouseId);
+                    return NotFound("House not found for the HouseId");
+                }
+
+                // Oppdater husinformasjonen
+                house.Address = viewModel.Address;
+                house.Price = viewModel.Price;
+                house.Rooms = viewModel.Rooms;
+                house.IsAvailable = viewModel.IsAvailable;
+
+                bool updateResult = await _houseRepository.Update(house);
+                if (updateResult)
+                {
+                    // Håndter nye bilder hvis de er lastet opp
+                    if (viewModel.Images != null && viewModel.Images.Any())
+                    {
+                        var imageUrls = new List<string>();
+                        foreach (var image in viewModel.Images)
+                        {
+                            if (image.Length > 0)
+                            {
+                                var filePath = Path.Combine("wwwroot/images", image.FileName);
+                                using (var stream = new FileStream(filePath, FileMode.Create))
+                                {
+                                    await image.CopyToAsync(stream);
+                                }
+                                imageUrls.Add("/images/" + image.FileName);
+                            }
+                        }
+
+                        if (imageUrls.Any())
+                        {
+                            await _houseRepository.AddHouseImages(house.HouseId, imageUrls);
+                        }
+                    }
+
                     return RedirectToAction(nameof(Table));
+                }
             }
-            _logger.LogError("[HouseController] House Update Failed {@House}", house);
-            return View(house);
+
+            _logger.LogError("[HouseController] House update failed for HouseId {HouseId:0000}", viewModel.HouseId);
+            return View(viewModel);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -21,39 +21,92 @@ namespace HouseRental.DAL
 
 
 
-        public async Task<IEnumerable<House>?> GetAll()
-        {
 
+
+
+
+
+
+
+        public async Task<bool> AddHouseImages(int houseId, List<string> imageUrls)
+        {
             try
             {
-                return  await _db.Houses
-                .Include(h => h.Owner)
-                .ToListAsync();
-                
+                var house = await _db.Houses.FindAsync(houseId);
+                if (house == null) return false;
 
+                var houseImages = imageUrls.Select(url => new HouseImage
+                {
+                    HouseId = houseId,
+                    ImageUrl = url
+                }).ToList();
+
+                await _db.HouseImages.AddRangeAsync(houseImages);
+                await _db.SaveChangesAsync();
+                return true;
             }
-            catch (Exception e) 
+            catch (Exception e)
             {
-                _logger.LogError("[HouseRepository] Houses TiListAync() failed when getAll(), error message: {e}", e.Message);
+                _logger.LogError("[HouseRepository] Failed to add images for HouseId {HouseId}, error: {ErrorMessage}", houseId, e.Message);
+                return false;
+            }
+        }
+
+        public async Task<List<HouseImage>> GetHouseImages(int houseId)
+        {
+            return await _db.HouseImages.Where(img => img.HouseId == houseId).ToListAsync();
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public async Task<IEnumerable<House>?> GetAll()
+        {
+            try
+            {
+                return await _db.Houses
+                    .Include(h => h.Owner)
+                    .Include(h => h.Images)  // 🔥 Inkluderer bildene til huset!
+                    .ToListAsync();
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("[HouseRepository] Failed to get all houses, error message: {e}", e.Message);
                 return null;
             }
-            
-
         }
+
 
         public async Task<House?> GetHouseById(int id)
         {
             try
             {
-                return await _db.Houses.FindAsync(id);
+                return await _db.Houses
+                    .Include(h => h.Owner)
+                    .Include(h => h.Images) // 🔥 Henter også bilder
+                    .FirstOrDefaultAsync(h => h.HouseId == id);
             }
             catch (Exception e)
             {
-                _logger.LogError("[HouseRepository] Houses FindAync(id) failed when getHouseById for HouseId {HouseId:0000}, error message: {e}", id, e.Message);
+                _logger.LogError("[HouseRepository] Failed to get House by ID {HouseId}, error: {e}", id, e.Message);
                 return null;
             }
-            
         }
+
 
         public async Task<bool> Create(House house)
         {

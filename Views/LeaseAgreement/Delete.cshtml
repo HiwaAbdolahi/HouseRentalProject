@@ -82,9 +82,9 @@
                         <!-- Include other house properties as needed -->
                     </dl>
 
-                    @if (!string.IsNullOrEmpty(Model.House.ImageUrl))
+                    @if (!string.IsNullOrEmpty(Model.House.Images.FirstOrDefault()?.ImageUrl))
                     {
-                        <img src="@Model.House.ImageUrl" alt="House Image" class="house-image" style="max-width: 300px; max-height: 300px" />
+                        <img src="@Model.House.Images.FirstOrDefault()?.ImageUrl" alt="House Image" class="house-image" style="max-width: 300px; max-height: 300px" />
                     }
                 }
                 else

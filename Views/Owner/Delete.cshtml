@@ -30,7 +30,7 @@
                     {
                         <li>
                             House @house.HouseId
-                            <img src="@house.ImageUrl" alt="House Image" style="max-width: 100px; max-height: 100px" />
+                            <img src="@house.Images.FirstOrDefault()?.ImageUrl" alt="House Image" style="max-width: 100px; max-height: 100px" />
                         </li>
                     }
                 </ul>

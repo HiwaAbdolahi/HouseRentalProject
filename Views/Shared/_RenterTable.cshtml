@@ -20,7 +20,7 @@
                     <td>@renter.Name</td>
                     <td>@renter.Address</td>
                     <td>
-                        @if (renter.House != null)
+                        @if (renter.House != null && renter.House.Images != null && renter.House.Images.Any())
                         {
                             <div class="row">
                                 <div class="col-6">
@@ -29,28 +29,20 @@
                                     </a>
                                 </div>
                                 <div class="col-6 text-right">
-                                    <img src="@renter.House.ImageUrl" alt="House Image" class="img-thumbnail" style="max-width: 100px; max-height: 100px" />
+                                    @if (renter.House != null && renter.House.Images != null && renter.House.Images.Any())
+                                    {
+                                        var firstImage = renter.House.Images.FirstOrDefault();
+                                        if (firstImage != null)
+                                        {
+                                            <img src="@firstImage.ImageUrl" alt="House Image" class="img-thumbnail" style="max-width: 100px; max-height: 100px;" />
+                                        }
+                                    }
                                 </div>
                             </div>
                         }
                         else
                         {
                             <p>No House available</p>
-                        }
-                    </td>
-                    <td>
-                        @if (renter.LeaseAgreements != null && renter.LeaseAgreements.Any())
-                        {
-                            <ul>
-                                @foreach (var agreement in renter.LeaseAgreements)
-                                {
-                                    <li>Lease Agreement ID: @agreement.LeaseAgreementId</li>
-                                }
-                            </ul>
-                        }
-                        else
-                        {
-                            <p>No Lease Agreements available</p>
                         }
                     </td>
                     <td>

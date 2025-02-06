@@ -36,7 +36,7 @@
         <dd class="col-sm-10">@Model.Rooms</dd>
 
         <dt class="col-sm-2">Image URL</dt>
-        <dd class="col-sm-10">@Model.ImageUrl</dd>
+        <dd class="col-sm-10">@Model.Images.FirstOrDefault()?.ImageUrl</dd>
 
         <dt class="col-sm-2">Image URL</dt>
         <dd class="col-sm-10">@Model.IsAvailable</dd>

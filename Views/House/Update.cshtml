@@ -1,10 +1,13 @@
-﻿@model House
+﻿@model HouseRental.ViewModel.HouseUploadViewModel
 
 <h2>Update House</h2>
+<div asp-validation-summary="All" class="text-danger"></div>
 
-<form asp-action="Update">
-    <input type="hidden" asp-for="HouseId" />   <!-- både HouseId og Owner Id må være hidden-->
+
+<form asp-action="Update" enctype="multipart/form-data">
+    <input type="hidden" asp-for="HouseId" />
     <input type="hidden" asp-for="OwnerId" />
+
     <div class="form-group">
         <label asp-for="Address"></label>
         <input asp-for="Address" class="form-control" />
@@ -23,10 +26,34 @@
         <span asp-validation-for="Rooms" class="text-danger"></span>
     </div>
 
+    <!-- 🖼️ Viser eksisterende bilder -->
     <div class="form-group">
-        <label asp-for="ImageUrl"></label>
-        <input asp-for="ImageUrl" class="form-control" />
-        <span asp-validation-for="ImageUrl" class="text-danger"></span>
+        <label>Existing Images</label>
+        <div class="d-flex flex-wrap">
+            @if (Model.ExistingImages != null && Model.ExistingImages.Any())
+            {
+                @foreach (var image in Model.ExistingImages)
+                {
+                    <div class="p-2">
+                        <img src="@image.ImageUrl" class="img-thumbnail" width="100" />
+                    </div>
+                }
+            }
+            else
+            {
+                <p>No images available</p>
+            }
+
+
+        </div>
+    </div>
+
+    <!-- 📂 Opplastingsfelt for nye bilder -->
+    <div class="form-group">
+        <label for="houseImages">Upload New Images</label>
+        <input asp-for="Images" class="form-control" type="file" multiple accept="image/*" />
+<span asp-validation-for="Images" class="text-danger"></span>
+
     </div>
 
     <div class="form-group">
@@ -42,9 +69,6 @@
         <span asp-validation-for="IsAvailable" class="text-danger"></span>
     </div>
 
-
-
     <button type="submit" class="btn btn-primary">Save Changes</button>
     <a asp-action="Table" class="btn btn-secondary">Cancel</a>
-
 </form>
