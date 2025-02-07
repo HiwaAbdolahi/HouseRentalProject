@@ -106,7 +106,7 @@ namespace HouseRental.Controllers
                     Price = model.Price,
                     Rooms = model.Rooms,
                     IsAvailable = model.IsAvailable,
-                    OwnerId = 1 // Sett OwnerId dynamisk hvis nødvendig
+                    OwnerId = model.OwnerId
                 };
 
                 bool houseCreated = await _houseRepository.Create(house);
