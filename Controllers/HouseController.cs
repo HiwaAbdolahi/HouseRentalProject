@@ -68,17 +68,25 @@ namespace HouseRental.Controllers
 
 
         [Authorize]
-        public async  Task<IActionResult> Details(int id) 
+        public async Task<IActionResult> Details(int id)
         {
             var house = await _houseRepository.GetHouseById(id);
             if (house == null)
             {
-                _logger.LogError("[HouseController] House list not Found while executing _HouseReposioty.GetAll()");
-                return BadRequest("House Not Found!");
-                
+                _logger.LogError("[HouseController] House not found while retrieving HouseId {HouseId:0000}", id);
+                return NotFound("House Not Found!");
             }
-            return View(house);
+
+            var viewModel = new DetailsViewModel(house)
+            {
+                IsHouse = true
+            };
+
+            return View(viewModel);
         }
+
+
+
 
 
 

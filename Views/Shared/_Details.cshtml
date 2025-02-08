@@ -1,23 +1,19 @@
-﻿@model dynamic
-
-<h3 class="my-5">
-    @Model.Address
-</h3>
+﻿@model HouseRental.Models.House
 
 <div class="row gx-5">
-    <img alt="@Model.Address" src="@Model.ImageUrl" class="img-fluid col-5" />
+    <img alt="@Model.Address" src="@Model.Images.FirstOrDefault()?.ImageUrl" class="img-fluid col-5" />
     <div class="col-7">
         <h5>@Model.Rooms</h5>
         <h3 class="pull-right">@Model.Price.ToString("0.00 NOK")</h3>
 
-        @if (Model.IsHouse)
-        {
-            <p><a href="/House/Table">Back to Table View</a></p>
-            <p><a href="/House/Grid">Back to Grid View</a></p>
-        }
-        else
-        {
-            <p><a href="/Owner/Table">Back to Owner Table</a></p>
-        }
+        <p><a href="/House/Table">Back to Table View</a></p>
+        <p><a href="/House/Grid">Back to Grid View</a></p>
     </div>
 </div>
+
+
+
+
+
+
+<p><a href="/Owner/Table">Back to Owner Table</a></p>
