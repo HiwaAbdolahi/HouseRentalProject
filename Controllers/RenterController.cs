@@ -1,5 +1,6 @@
 ﻿using HouseRental.DAL;
 using HouseRental.Models;
+using HouseRental.ViewModel;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,16 +27,32 @@ namespace HouseRental.Controllers
         [Authorize]
         public async Task<IActionResult> DetailsForRenter(int id)
         {
-            var house = await _houseRepository.GetHouseById(id);
-            if (house == null) 
+            try
             {
-                _logger.LogError("[RenterController] House not found while fetching details for HouseId {RenterId:0000}", id);
-                return BadRequest("House Not Found!");
-            }
-                
+                var house = await _houseRepository.GetHouseById(id);
+                if (house == null)
+                {
+                    _logger.LogError("[RenterController] House not found while fetching details for HouseId {HouseId:0000}", id);
+                    return NotFound("House Not Found!");
+                }
 
-            return View(house);
+                // Bruk DetailsViewModel med IsRenter satt til true
+                var detailsViewModel = new DetailsViewModel(house)
+                {
+                    IsRenter = true,
+                    IsHouse = false,
+                    IsOwner = false
+                };
+
+                return View(detailsViewModel);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError("[RenterController] An error occurred while fetching house details: {e}", e.Message);
+                return BadRequest("An error occurred while fetching house details.");
+            }
         }
+
 
 
         [Authorize]

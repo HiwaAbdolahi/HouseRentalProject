@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using HouseRental.Models;
 using Microsoft.AspNetCore.Authorization;
+using HouseRental.ViewModel;
 
 namespace HouseRental.Controllers
 {
@@ -34,7 +35,15 @@ namespace HouseRental.Controllers
                     return NotFound("House Not Found!");
                 }
 
-                return View(house);
+                // Bruk DetailsViewModel med IsOwner satt til true
+                var detailsViewModel = new DetailsViewModel(house)
+                {
+                    IsOwner = true,
+                    IsHouse = false,
+                    IsRenter = false
+                };
+
+                return View(detailsViewModel);
             }
             catch (Exception e)
             {
@@ -42,6 +51,7 @@ namespace HouseRental.Controllers
                 return BadRequest("An error occurred while fetching house details.");
             }
         }
+
 
 
 
