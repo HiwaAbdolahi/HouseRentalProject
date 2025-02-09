@@ -56,6 +56,25 @@
         <span asp-validation-for="IsAvailable" class="text-danger"></span>
     </div>
 
+    <!-- 🔥 Nye felt for Beskrivelse, Fasiliteter, Nabolagsinfo -->
+    <div class="form-group">
+        <label asp-for="Beskrivelse"></label>
+        <textarea asp-for="Beskrivelse" class="form-control" rows="3"></textarea>
+        <span asp-validation-for="Beskrivelse" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Fasiliteter"></label>
+        <textarea asp-for="Fasiliteter" class="form-control" rows="2"></textarea>
+        <span asp-validation-for="Fasiliteter" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Nabolagsinfo"></label>
+        <textarea asp-for="Nabolagsinfo" class="form-control" rows="2"></textarea>
+        <span asp-validation-for="Nabolagsinfo" class="text-danger"></span>
+    </div>
+
     <button type="submit" class="btn btn-primary">Create</button>
     <a asp-action="Table" class="btn btn-secondary">Back to Table View</a>
 </form>

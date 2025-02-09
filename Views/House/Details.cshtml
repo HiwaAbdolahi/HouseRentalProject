@@ -1,8 +1,23 @@
-﻿@model HouseRental.ViewModel.DetailsViewModel
+﻿<link rel="stylesheet" href="~/css/DetailsHouse.css" />
 
-<h3 class="my-5">
-    @Model.House.Address
-</h3>
+@model HouseRental.ViewModel.DetailsViewModel
 
-<partial name="~/Views/Shared/_Details.cshtml" model="Model.House" />
+<div class="container my-5">
+    <!-- Generisk delvis visning for huset -->
+    <partial name="~/Views/Shared/_Details.cshtml" model="Model.House" />
 
+    <!-- Spesifikke detaljer om huset -->
+    <div class="mt-4">
+        <h4 class="text-secondary">Detaljer om huset</h4>
+        <p><strong>Beskrivelse:</strong> @Model.House.Beskrivelse</p>
+        <p><strong>Fasiliteter:</strong> @Model.House.Fasiliteter</p>
+        <p><strong>Nabolagsinfo:</strong> @Model.House.Nabolagsinfo</p>
+    </div>
+
+    <!-- Navigasjonsknapper (kun for huset) -->
+    <div class="text-center mt-4">
+        <a href="/House/Table" class="btn btn-outline-primary me-2">Back to Table View</a>
+        <a href="/House/Grid" class="btn btn-outline-secondary me-2">Back to Grid View</a>
+        <a href="/Owner/Table" class="btn btn-outline-dark">Back to Owner Table</a>
+    </div>
+</div>

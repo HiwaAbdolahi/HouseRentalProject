@@ -1,19 +1,53 @@
 ﻿@model HouseRental.Models.House
 
-<div class="row gx-5">
-    <img alt="@Model.Address" src="@Model.Images.FirstOrDefault()?.ImageUrl" class="img-fluid col-5" />
-    <div class="col-7">
-        <h5>@Model.Rooms</h5>
-        <h3 class="pull-right">@Model.Price.ToString("0.00 NOK")</h3>
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <!-- Bildeseksjon -->
+        <div class="col-md-8">
+            <div id="imageCarousel" class="carousel slide" data-bs-interval="false">
+                <div class="carousel-inner">
+                    @if (Model.Images != null && Model.Images.Any())
+                    {
+                        @for (int i = 0; i < Model.Images.Count; i++)
+                        {
+                            <div class="carousel-item @(i == 0 ? "active" : "") text-center">
+                                <img src="@Model.Images[i].ImageUrl"
+                                     class="img-fluid rounded shadow-sm border"
+                                     alt="Image"
+                                     style="max-height: 500px; object-fit: contain;" />
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <div class="carousel-item active text-center">
+                            <img src="/images/default.jpg"
+                                 class="img-fluid rounded shadow-sm border"
+                                 alt="Default Image"
+                                 style="max-height: 500px; object-fit: contain;" />
+                        </div>
+                    }
+                </div>
 
-        <p><a href="/House/Table">Back to Table View</a></p>
-        <p><a href="/House/Grid">Back to Grid View</a></p>
+                <!-- Navigasjonsknapper -->
+                <button class="carousel-control-prev" type="button" data-bs-target="#imageCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#imageCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Generell informasjon -->
+        <div class="col-md-8 mt-4">
+            <h3 class="text-center text-primary">@Model.Address</h3>
+            <div class="d-flex justify-content-between">
+                <p><strong>Rooms:</strong> @Model.Rooms</p>
+                <p><strong>Price:</strong> @Model.Price.ToString("N0 NOK")</p>
+            </div>
+        </div>
     </div>
 </div>
-
-
-
-
-
-
-<p><a href="/Owner/Table">Back to Owner Table</a></p>

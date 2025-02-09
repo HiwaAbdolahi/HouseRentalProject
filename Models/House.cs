@@ -33,5 +33,16 @@ namespace HouseRental.Models
         // 🔥 Ny en-til-mange relasjon: Et hus kan ha flere bilder
         public virtual List<HouseImage> Images { get; set; } = new List<HouseImage>();
 
+
+        // 🔥 Nytt: Beskrivelse, fasiliteter, og nabolagsdetaljer
+        [Display(Name = "Beskrivelse")]
+        public string Beskrivelse { get; set; } = string.Empty;
+
+        [Display(Name = "Fasiliteter")]
+        public string Fasiliteter { get; set; } = string.Empty;
+
+        [Display(Name = "Nabolags Info")]
+        public string Nabolagsinfo { get; set; } = string.Empty;
+
     }
 }

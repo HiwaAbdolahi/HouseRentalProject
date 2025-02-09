@@ -31,14 +31,25 @@ namespace HouseRental.Models
                 {
                     var houses = new List<House>
                     {
-                        new House { Address = "Drammen", Rooms = 4, Price = 150, IsAvailable = true, OwnerId = firstOwner.OwnerId },
-                        new House { Address = "789 Oak Road", Rooms = 5, Price = 400000, IsAvailable = true, OwnerId = firstOwner.OwnerId },
-                        new House { Address = "101 Pine Lane", Rooms = 3, Price = 220000, IsAvailable = true, OwnerId = firstOwner.OwnerId },
-                        new House { Address = "202 Cedar Street", Rooms = 4, Price = 300000, IsAvailable = false, OwnerId = firstOwner.OwnerId },
-                        new House { Address = "303 Maple Avenue", Rooms = 3, Price = 240000, IsAvailable = true, OwnerId = firstOwner.OwnerId },
-                        new House { Address = "404 Birch Road", Rooms = 4, Price = 310000, IsAvailable = true, OwnerId = firstOwner.OwnerId },
-                        new House { Address = "505 Spruce Lane", Rooms = 4, Price = 280000, IsAvailable = true, OwnerId = firstOwner.OwnerId },
-                        new House { Address = "606 Fir Street", Rooms = 3, Price = 230000, IsAvailable = false, OwnerId = firstOwner.OwnerId }
+                        new House { Address = "Drammen", Rooms = 4, Price = 150, IsAvailable = true, OwnerId = firstOwner.OwnerId,
+                        Beskrivelse = "Moderne hus med romslige områder og flott utsikt.",
+                        Fasiliteter = "Parkering, Hage, Peis",
+                        Nabolagsinfo = "Rolig nabolag med kort vei til butikker og skoler" },
+
+            new House { Address = "789 Oak Road", Rooms = 5, Price = 400000, IsAvailable = true, OwnerId = firstOwner.OwnerId,
+                        Beskrivelse = "Romslig enebolig med stor hage.",
+                        Fasiliteter = "Garasje, Terrasse, Kjeller",
+                        Nabolagsinfo = "Familievennlig område med parker i nærheten" },
+
+            new House { Address = "101 Pine Lane", Rooms = 3, Price = 220000, IsAvailable = true, OwnerId = firstOwner.OwnerId,
+                        Beskrivelse = "Koselig hus perfekt for små familier.",
+                        Fasiliteter = "Balkong, Moderne kjøkken",
+                        Nabolagsinfo = "Tett på offentlig transport og shopping" },
+
+            new House { Address = "202 Cedar Street", Rooms = 4, Price = 300000, IsAvailable = false, OwnerId = firstOwner.OwnerId,
+                        Beskrivelse = "Nydelig renovert hus med åpen planløsning.",
+                        Fasiliteter = "Peis, Privat hage, Aircondition",
+                        Nabolagsinfo = "Nær skoler og restauranter" }
                     };
                     context.AddRange(houses);
                     context.SaveChanges();

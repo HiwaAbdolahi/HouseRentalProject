@@ -107,14 +107,17 @@ namespace HouseRental.Controllers
         {
             if (ModelState.IsValid)
             {
-                // Map ViewModel til House-modellen
+                // Map ViewModel til House-modellen inkludert nye felter
                 var house = new House
                 {
                     Address = model.Address,
                     Price = model.Price,
                     Rooms = model.Rooms,
                     IsAvailable = model.IsAvailable,
-                    OwnerId = model.OwnerId
+                    OwnerId = model.OwnerId,
+                    Beskrivelse = model.Beskrivelse,
+                    Fasiliteter = model.Fasiliteter,
+                    Nabolagsinfo = model.Nabolagsinfo
                 };
 
                 bool houseCreated = await _houseRepository.Create(house);
@@ -169,6 +172,7 @@ namespace HouseRental.Controllers
 
 
 
+
         [HttpGet]
         [Authorize]
         public async Task<IActionResult> Update(int id)
@@ -188,7 +192,10 @@ namespace HouseRental.Controllers
                 Price = house.Price,
                 Rooms = house.Rooms,
                 IsAvailable = house.IsAvailable,
-                ExistingImages = house.Images
+                ExistingImages = house.Images,
+                Beskrivelse = house.Beskrivelse,       //  Legg til
+                Fasiliteter = house.Fasiliteter,       //  Legg til
+                Nabolagsinfo = house.Nabolagsinfo      //  Legg til
             };
 
             return View(viewModel);
@@ -214,6 +221,9 @@ namespace HouseRental.Controllers
                 house.Price = viewModel.Price;
                 house.Rooms = viewModel.Rooms;
                 house.IsAvailable = viewModel.IsAvailable;
+                house.Beskrivelse = viewModel.Beskrivelse;                   //  Legg til
+                house.Fasiliteter = viewModel.Fasiliteter;                   //  Legg til
+                house.Nabolagsinfo = viewModel.Nabolagsinfo;                 //  Legg til
 
                 bool updateResult = await _houseRepository.Update(house);
                 if (updateResult)
