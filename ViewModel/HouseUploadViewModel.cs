@@ -36,5 +36,19 @@ namespace HouseRental.ViewModel
 
         // 🖼️ Eksisterende bilder som skal vises
         public List<HouseImage>? ExistingImages { get; set; }
+
+
+
+
+
+        // 🔥 Legg til de nye feltene
+        [Display(Name = "Beskrivelse")]
+        public string Beskrivelse { get; set; } = string.Empty;
+
+        [Display(Name = "Fasiliteter")]
+        public string Fasiliteter { get; set; } = string.Empty;
+
+        [Display(Name = "Nabolagsinfo")]
+        public string Nabolagsinfo { get; set; } = string.Empty;
     }
 }

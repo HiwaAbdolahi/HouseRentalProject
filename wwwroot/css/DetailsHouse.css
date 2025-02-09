@@ -1,0 +1,74 @@
+﻿/* Bildestørrelse som ser bra ut i både lys- og mørk modus */
+.carousel-item img {
+    max-height: 450px;
+    width: auto;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+    /* Legg til en subtil hover-effekt på bildene */
+    .carousel-item img:hover {
+        transform: scale(1.02);
+    }
+
+/* Container for info-seksjonen */
+.house-info {
+    background-color: var(--bs-light); /* Lysmodus */
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    transition: background-color 0.3s ease;
+}
+
+/* Mørk modus */
+body.dark-mode .house-info {
+    background-color: #2c2c2c; /* Mørkere bakgrunn */
+    color: #f1f1f1; /* Lys tekst */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+/* Tittelstil */
+h3.text-primary {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--bs-primary);
+}
+
+/* Detaljseksjon */
+.details-section p {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+}
+
+    .details-section p strong {
+        color: var(--bs-dark);
+    }
+
+/* Dark mode justering */
+body.dark-mode .details-section p strong {
+    color: #e0e0e0;
+}
+
+/* Tilbakelenker */
+.text-center a {
+    margin: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+    .text-center a:hover {
+        background-color: var(--bs-primary);
+        color: white;
+    }
+
+/* Generell bakgrunn */
+body {
+    background: var(--bs-gray-100);
+    transition: background-color 0.3s ease;
+}
+
+    body.dark-mode {
+        background: #121212;
+    }
